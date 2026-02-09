@@ -196,7 +196,11 @@ for s in test_strings:
 ## Conclusions 
 In conclusion this was a grea laboratory, i needed to implement a grammar which was somwhat easy, the ineresting part was to work with finite automaton because we coudn't learn about this at the course(thanks to Braga!?), so i read myself the book, had some headaches while trying to understand this properly. I then wrote on a paper an algorithm to transform grammar to FA just so later i found that in book this is already explained(such a great waste of time, but interesting at least). It was also a little pain to make the function string_belongs_to_language because in words easy to say harder in a program.
 
-So, i learned how to work with grammars and FA, implemented them and while implementing i understand even more the actual theory of the last chapters.
+So, i learned how to work with grammars and FA, implemented them and while implementing i understand even more the actual theory of the last chapters. 
+
+Here is a screenshot to prove that everything works fine. Firstly 5 string generated from grammar, i checked them by hand and they are correct. After that just some details so we can check that FA was transformed succesfully from the Grammar. And finally i tested 8 strings which results i knew from the start and they coincide with my expectations, thus every functionality works as expecte.
+
+![Lab 1 Output](../screenshots/lab_1_output.png)
 
 
 ## References
