@@ -204,4 +204,4 @@ Here is a screenshot to prove that everything works fine. Firstly 5 string gener
 
 
 ## References
-Technical University of MoldovaFormal Languages and Finite AutomataGuide for practical lessonsChișinău, 2022
+1. Technical University of Moldova, *Formal Languages and Finite Automata: Guide for practical lessons*, Chișinău, 2022.
