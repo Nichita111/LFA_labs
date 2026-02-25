@@ -50,14 +50,14 @@ For every regular grammar can be obtained equivalent finite automaton.
 
 5. It is built the set $\delta$: for all productions, which have representation  
    $A \to aB$, it is obtained:  
-   $$
+   $
    \delta (A, a) = \delta (A, a) \cup \{B\}.
-   $$
+   $
 
    For all productions which have representation $A \to a$, it is obtained:  
-   $$
+   $
    \delta (A, a) = \delta (A, a) \cup \{X\}.
-   $$
+   $
 
 
 ## Objectives:

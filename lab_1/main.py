@@ -7,10 +7,10 @@ def main():
     vt = {'a', 'b', 'c', 'd'}
 
     productions = {
-        'S': ['dA'],
-        'A': ['d', 'aB'],
-        'B': ['bC'],
-        'C': ['cA', 'aS'],
+        'S': ['dA', 'dC'], # (S, d) -> {'A', 'C}
+        'A': ['d', 'aB'], # (A, d) -> {'X'}
+        'B': ['bC'], 
+        'C': ['cA', 'aS'], #(C, c) -> {'A'}, (C, a) -> {'S'}
     }
 
     grammar = Grammar(vn, vt, productions, 'S')
