@@ -41,7 +41,6 @@ class Grammar:
             joined = " | ".join(rhs_list) if rhs_list else EPSILON
             lines.append(f"  {head} -> {joined}")
         lines.append("}")
-        lines.append(f"S = {self.start}")
         return "\n".join(lines)
 
     def _format_rhs(self, rhs: Tuple[str, ...]) -> str:
@@ -176,6 +175,18 @@ class Grammar:
                 new_productions.setdefault(head, []).append(tuple(replaced))
 
         final_productions: Dict[str, List[Tuple[str, ...]]] = {k: [] for k in grammar.vn}
+        pair_map: Dict[Tuple[str, str], str] = {}
+
+        def get_pair_symbol(pair: Tuple[str, str]) -> str:
+            if pair in pair_map:
+                return pair_map[pair]
+            name = _fresh_nonterminal("X", grammar.vn)
+            grammar.vn.add(name)
+            pair_map[pair] = name
+            final_productions.setdefault(name, [])
+            if pair not in final_productions[name]:
+                final_productions[name].append(pair)
+            return name
         for head, rhs_list in list(new_productions.items()):
             for rhs in rhs_list:
                 if len(rhs) <= 2:
@@ -186,13 +197,20 @@ class Grammar:
                 symbols = list(rhs)
                 while len(symbols) > 2:
                     first = symbols.pop(0)
+                    if len(symbols) == 2:
+                        pair_nt = get_pair_symbol((symbols[0], symbols[1]))
+                        final_productions.setdefault(current_head, [])
+                        final_productions[current_head].append((first, pair_nt))
+                        symbols = []
+                        break
                     new_head = _fresh_nonterminal("X", grammar.vn)
                     grammar.vn.add(new_head)
                     final_productions.setdefault(current_head, [])
                     final_productions[current_head].append((first, new_head))
                     current_head = new_head
-                final_productions.setdefault(current_head, [])
-                final_productions[current_head].append(tuple(symbols))
+                if len(symbols) == 2:
+                    final_productions.setdefault(current_head, [])
+                    final_productions[current_head].append(tuple(symbols))
 
         grammar.productions = final_productions
         return grammar
